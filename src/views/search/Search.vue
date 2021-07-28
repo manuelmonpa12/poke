@@ -140,7 +140,7 @@
                     .catch((error) => {})
                     .finally(() => {});
             },
-            allData(){
+            allData() {
                 this.search = null
                 this.filterFav = false
             },
@@ -150,16 +150,24 @@
                     .then((response) => {
                         if (response.data) {
                             this.itemsDetail = response.data
-                            this.itemsDetail['typeArray'] = []
-                            response.data.types.forEach(element => {
-                                this.itemsDetail.typeArray.push(element.type.name)
-                            });
+                            this.processData(response.data)
                             this.visibleDetail = true
                         }
                     })
                     .catch((error) => {})
                     .finally(() => {});
             },
+            processData(data) {
+                this.itemsDetail['typeArray'] = []
+                this.itemsDetail['abilitiesArray'] = []
+                data.types.forEach(element => {
+                    this.itemsDetail.typeArray.push(element.type.name)
+                })
+                data.abilities.forEach(element => {
+                    this.itemsDetail.abilitiesArray.push(element.ability.name)
+                })
+                this.itemsDetail['clipboard'] = `${data.name}, ${data.abilitiesArray.toString()}, `
+            }
         },
         mounted() {
             this.getPokemon()
