@@ -27,7 +27,7 @@
                     </v-simple-table>
                 </v-card-text>
                 <v-card-actions class="d-flex justify-space-between">
-                    <v-btn color="error" rounded v-clipboard:copy="sharedData()" v-clipboard:success="onCopy"
+                    <v-btn color="error" rounded v-clipboard:copy="data.name" v-clipboard:success="onCopy"
                         v-clipboard:error="onError">
                         Share to my friends
                     </v-btn>
