@@ -166,7 +166,7 @@
                 data.abilities.forEach(element => {
                     this.itemsDetail.abilitiesArray.push(element.ability.name)
                 })
-                this.itemsDetail['clipboard'] = `${data.name}, ${data.abilitiesArray.toString()}, `
+                this.itemsDetail['clipboard'] = `${data.name}: ${data.abilitiesArray.toString()}`
             }
         },
         mounted() {

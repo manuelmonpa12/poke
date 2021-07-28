@@ -22,7 +22,6 @@
                                 <tr>
                                     <td><b>Types:</b> {{data.typeArray.toString()}}</td>
                                 </tr>
-                                {{data.clipboard}}
                             </tbody>
                         </template>
                     </v-simple-table>
