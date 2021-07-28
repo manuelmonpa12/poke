@@ -150,6 +150,10 @@
                     .then((response) => {
                         if (response.data) {
                             this.itemsDetail = response.data
+                            this.itemsDetail['typeArray'] = []
+                            response.data.types.forEach(element => {
+                                this.itemsDetail.typeArray.push(element.type.name)
+                            });
                             this.visibleDetail = true
                         }
                     })

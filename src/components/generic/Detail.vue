@@ -20,7 +20,7 @@
                                     <td><b>Height:</b> {{data.height}}</td>
                                 </tr>
                                 <tr>
-                                    <td><b>Types:</b> poison</td>
+                                    <td><b>Types:</b> {{data.typeArray.toString()}}</td>
                                 </tr>
                             </tbody>
                         </template>
