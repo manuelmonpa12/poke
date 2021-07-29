@@ -1,4 +1,5 @@
 # pokemon
+![alt text](https://github.com/manuelmonpa12/poke/blob/ad39dfa2c5afdc5252df692964de78bc9c4de000/src/assets/home.png)
 
 ## Project setup
 ```
@@ -16,7 +17,7 @@ npm run build
 ```
 
 ### Prueba Frontend Manuel Montero para Global66
-See [demo](poke-v2.vercel.app/#/)
+See [demo](https://poke-v2.vercel.app/#/)
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
