@@ -1,6 +1,7 @@
 <template>
     <v-row>
-        <v-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12" class="d-flex justify-center">
+        <template v-if="!loading">
+            <v-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12" class="d-flex justify-center">
             <v-img max-height="250" max-width="250" src="@/assets/pikachu.png"></v-img>
         </v-col>
         <v-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12" class="d-flex justify-center">
@@ -17,6 +18,8 @@
                 Get started
             </v-btn>
         </v-col>
+        </template>
+        <loader :visible="loading" />
     </v-row>
 </template>
 
@@ -33,13 +36,14 @@
         },
         methods: {
             activeParentModal() {
+                this.loading = true
                 // this.$parent.activeModal()
-                // setTimeout(() => {
-                //     this.$parent.activeModal()
+                setTimeout(() => {
                     this.$router.push({
                         name: 'search'
                     })
-                // }, 900);
+                    // this.loading = false
+                }, 1400);
             }
         }
     }

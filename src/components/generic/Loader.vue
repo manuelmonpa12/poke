@@ -1,7 +1,10 @@
 <template>
     <div class="p-background loading d-flex align-center justify-center" v-if="visible">
-        <v-img max-height="90" max-width="90" src="@/assets/loader.png"></v-img> <br>
-        <!-- <v-btn @click="visible = false"></v-btn> -->
+        <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+        <transition name="custom-classes-transition" enter-active-class="animated tada"
+            leave-active-class="animated bounceOutRight">
+            <v-img v-if="show" max-height="90" max-width="90" src="@/assets/loader.png"></v-img>
+        </transition>
     </div>
 </template>
 
@@ -17,12 +20,20 @@
         name: 'loader',
         data: function () {
             return {
-                
+                show: false
             }
-        }
+        },
+        watch: {
+            visible() {
+                if (this.visible) {
+                    setTimeout(() => {
+                        this.show = true
+                    }, 100);
+                }
+            }
+        },
     }
 </script>
 
 <style>
-
 </style>

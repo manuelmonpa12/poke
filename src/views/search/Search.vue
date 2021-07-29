@@ -16,7 +16,7 @@
                                 :items="filterData" class="elevation-1 full-width">
                                 <template v-slot:item.name="{ item }">
                                     <div class="d-flex justify-space-between align-center">
-                                        <span v-on:click="setDetail(item.name)">{{item.name}}</span>
+                                        <span v-on:click="setDetail(item.name)" class="text-list">{{item.name}}</span>
                                         <v-btn v-if="!item.star" icon color="grey lighten-1" @click="item.star = 1">
                                             <v-icon>
                                                 mdi-star
