@@ -5,7 +5,9 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import VueClipboard from 'vue-clipboard2'
+import Vuex from 'vuex'
 
+Vue.use(Vuex)
 Vue.use(VueClipboard)
 Vue.config.productionTip = false
 

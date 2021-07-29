@@ -16,13 +16,16 @@
                                 :items="filterData" class="elevation-1 full-width">
                                 <template v-slot:item.name="{ item }">
                                     <div class="d-flex justify-space-between align-center">
-                                        <span v-on:click="setDetail(item.name)" class="text-list">{{item.name}}</span>
-                                        <v-btn v-if="!item.star" icon color="grey lighten-1" @click="item.star = 1">
+                                        <span v-on:click="setDetail(item.name, item.star)"
+                                            class="text-list">{{item.name}}</span>
+                                        <v-btn v-if="!item.star" icon color="grey lighten-1"
+                                            @click="item.star = 1, setFav = !setFav">
                                             <v-icon>
                                                 mdi-star
                                             </v-icon>
                                         </v-btn>
-                                        <v-btn v-else icon color="yellow darken-3" @click="item.star = 0">
+                                        <v-btn v-else icon color="yellow darken-3"
+                                            @click="item.star = 0, setFav = !setFav">
                                             <v-icon>
                                                 mdi-star
                                             </v-icon>
@@ -75,6 +78,7 @@
         },
         data: function () {
             return {
+                setFav: false,
                 search: null,
                 visibleDetail: false,
                 visibleError: false,
@@ -93,9 +97,23 @@
                 if (this.filterData.length >= 1) {
                     this.visibleError = false
                 }
+            },
+            setFav() {
+                this.favoriteList = this.filterData.filter(word => word.star == true)
             }
         },
         computed: {
+            favoriteList: {
+                get() {
+                    return this.$store.state.favoriteList;
+                },
+                set(value) {
+                    this.$store.commit("SET_EDITING_OBJECT", {
+                        key: "favoriteList",
+                        value
+                    });
+                }
+            },
             filterData() {
                 let result = this.items
                 if (this.search != null && this.search != "") {
@@ -144,22 +162,23 @@
                 this.search = null
                 this.filterFav = false
             },
-            setDetail(name) {
+            setDetail(name, star) {
                 this.itemsDetail = []
                 axios.get('https://pokeapi.co/api/v2/pokemon/' + name)
                     .then((response) => {
                         if (response.data) {
                             this.itemsDetail = response.data
-                            this.processData(response.data)
+                            this.processData(response.data, star)
                             this.visibleDetail = true
                         }
                     })
                     .catch((error) => {})
                     .finally(() => {});
             },
-            processData(data) {
+            processData(data, star) {
                 this.itemsDetail['typeArray'] = []
                 this.itemsDetail['abilitiesArray'] = []
+                this.itemsDetail['star'] = star
                 data.types.forEach(element => {
                     this.itemsDetail.typeArray.push(element.type.name)
                 })

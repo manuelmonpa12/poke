@@ -31,12 +31,12 @@
                         v-clipboard:error="onError">
                         Share to my friends
                     </v-btn>
-                    <!-- <v-btn v-if="!item.star" icon color="grey lighten-1" @click="item.star = 1">
+                    <v-btn v-if="!data.star" icon color="grey lighten-1">
                         <v-icon>
                             mdi-star
                         </v-icon>
-                    </v-btn> -->
-                    <v-btn icon color="yellow darken-3" @click="item.star = 0">
+                    </v-btn>
+                    <v-btn v-else icon color="yellow darken-3">
                         <v-icon>
                             mdi-star
                         </v-icon>
